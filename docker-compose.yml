@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+  postgres-compose:
+    image: postgres
+    container_name: postgres-1
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/noe/Desenvolvimento/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    container_name: pgadmin-1
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "user@domain.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
