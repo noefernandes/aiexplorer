@@ -27,7 +27,7 @@ public class AITool {
     @Column(length = 1000)
     private String description;
 
-    @OneToMany(mappedBy = "aiTool", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Tag> tags;
 
     @Lob

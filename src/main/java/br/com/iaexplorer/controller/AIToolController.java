@@ -19,6 +19,7 @@ public class AIToolController {
 
     @PostMapping("/aitool")
     public ResponseEntity<AITool> save(@RequestBody AITool aiTool) {
+        System.out.println("-------------------" + aiTool.getTags().size());
         return new ResponseEntity<>(aiToolService.save(aiTool), HttpStatus.OK);
     }
 
